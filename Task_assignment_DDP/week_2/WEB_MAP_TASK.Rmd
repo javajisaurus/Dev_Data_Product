@@ -1,0 +1,33 @@
+---
+title: "Map_task"
+author: "Java_aji"
+date: "2023-04-13"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## The Capital City Province in Indonesia
+### 13th April 2023
+
+```{r, echo=FALSE, warning=FALSE}
+library(leaflet)
+
+cities <- c("Banda Aceh", "Padang", "Medan", "Palembang", "Bandar Lampung", "Pekanbaru", "Tanjung Pinang", "Jambi", "Pangkal Pinang", "Bengkulu", "Jakarta", "Serang", "Bandung", "Semarang", "Surabaya", "Yogyakarta", "Denpasar", "Mataram", "Kupang", "Pontianak", "Banjarmasin", "Palangkaraya", "Samarinda", "Tanjung Selor", "Mamuju", "Kendari", "Makassar", "Palu", "Manado", "Gorontalo", "Ambon", "Sofifi", "Jayapura", "Manokwari")
+
+cities_links <- c("<a href='https://en.wikipedia.org/wiki/Banda_Aceh'>Banda Aceh</a>", "<a href='https://en.wikipedia.org/wiki/Padang'>Padang</a>", "<a href='https://en.wikipedia.org/wiki/Medan'>Medan</a>", "<a href='https://en.wikipedia.org/wiki/Palembang'>Palembang</a>", "<a href='https://en.wikipedia.org/wiki/Bandar_Lampung'>Bandar Lampung</a>", "<a href='https://en.wikipedia.org/wiki/Pekanbaru'>Pekanbaru</a>", "<a href='https://en.wikipedia.org/wiki/Tanjung_Pinang'>Tanjung Pinang</a>", "<a href='https://en.wikipedia.org/wiki/Jambi'>Jambi</a>", "<a href='https://en.wikipedia.org/wiki/Pangkal_Pinang'>Pangkal Pinang</a>", "<a href='https://en.wikipedia.org/wiki/Bengkulu'>Bengkulu</a>", "<a href='https://en.wikipedia.org/wiki/Jakarta'>Jakarta</a>", "<a href='https://en.wikipedia.org/wiki/Serang'>Serang</a>", "<a href='https://en.wikipedia.org/wiki/Bandung'>Bandung</a>", "<a href='https://en.wikipedia.org/wiki/Semarang'>Semarang</a>", "<a href='https://en.wikipedia.org/wiki/Surabaya'>Surabaya</a>", "<a href='https://en.wikipedia.org/wiki/Yogyakarta'>Yogyakarta</a>", "<a href='https://en.wikipedia.org/wiki/Denpasar'>Denpasar</a>", "<a href='https://en.wikipedia.org/wiki/Mataram_(city)'>Mataram</a>", "<a href='https://en.wikipedia.org/wiki/Kupang'>Kupang</a>", "<a href='https://en.wikipedia.org/wiki/Pontianak'>Pontianak</a>", "<a href='https://en.wikipedia.org/wiki/Banjarmasin'>Banjarmasin</a>", "<a href='https://en.wikipedia.org/wiki/Palangkaraya'>Palangkaraya</a>", "<a href='https://en.wikipedia.org/wiki/Samarinda'>Samarinda</a>", "<a href='https://en.wikipedia.org/wiki/Tanjung_Selor'>Tanjung Selor</a>", "<a href='https://en.wikipedia.org/wiki/Mamuju_(city)'>Mamuju</a>", "<a href='https://en.wikipedia.org/wiki/Kendari'>Kendari</a>", "<a href='https://en.wikipedia.org/wiki/Makassar'>Makassar</a>", "<a href='https://en.wikipedia.org/wiki/Palu'>Palu</a>", "<a href='https://en.wikipedia.org/wiki/Manado'>Manado</a>", "<a href='https://en.wikipedia.org/wiki/Gorontalo'>Gorontalo</a>", "<a href='https://en.wikipedia.org/wiki/Ambon'>Ambon</a>", "<a href='https://en.wikipedia.org/wiki/Sofifi'>Sofifi</a>", "<a href='https://en.wikipedia.org/wiki/Jayapura'>Jayapura</a>", "<a href='https://en.wikipedia.org/wiki/Manokwari'>Manokwari</a>")
+
+lat <- c(5.55, -0.9490953, 3.589444, -2.986111, -5.45, 0.509167, 0.918773, -1.6285961, -2.133333, -3.791724, -6.175, -6.12, -6.912, -6.966667, -7.245833, -7.801389, -8.65, -8.583333, -10.1776661, -0.0352232, -3.32, -2.207973, -0.5013804, 2.85, -2.683333, -3.9907, -5.16186, -0.900497, 1.493056, 0.5376351, -3.7, 0.724444, -2.533, -0.8641993)
+
+lng <- c(95.3175, 100.3683193, 98.673889, 104.755556, 105.266667, 101.445278, 104.455415, 103.60598, 106.116667, 102.226312, 106.8275, 106.150278, 107.609, 110.416667, 112.737778, 110.364444, 115.216667, 116.116667, 123.6043846, 109.3113372, 114.5925, 113.915623, 117.137759, 117.383333, 118.9, 122.5086, 119.436164, 119.877886, 124.841261, 123.0629149, 128.166667, 127.580556, 140.717, 134.046197)
+
+Capital_city <- data.frame(cities, cities_links, lat, lng)
+
+Capital_city %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(lat=lat, lng=lng, popup=cities_links, clusterOptions=markerClusterOptions)
+
+```

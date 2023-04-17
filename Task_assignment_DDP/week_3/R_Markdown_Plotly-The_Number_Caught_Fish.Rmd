@@ -1,0 +1,32 @@
+---
+title: "Task Week 3"
+author: "Java_aji"
+date: "2023-04-14"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Number of Fishes Caught
+### 14th April 2023
+```{r, comment= FALSE, warning=FALSE}
+suppressPackageStartupMessages(library(plotly)) #call plotly
+
+
+
+# Save Data to Data Frame
+Fishes <- data.frame(
+  year = c(2017, 2018, 2019, 2020, 2021),
+  Skipjack = c(1200, 1400, 1800, 2000, 2200),
+  Mackerel = c(800, 900, 1000, 1200, 1500)
+)
+
+# Make an interactive plot with plotly
+i <- plot_ly(Fishes, x = ~year, y = ~Skipjack, type = 'bar', name = 'Skipjack', marker = list(color = 'blue')) %>%
+add_trace(y = ~Mackerel, name = 'Mackerel', marker = list(color = 'orange')) %>%
+layout(xaxis = list(title = "Years"), yaxis = list(title = "Number of Fish Caught"), barmode = 'group', title = 'Fish Catch of Skipjack Tuna and Mackerel Tuna from 2017-2021 (tons)')
+
+i
+```
